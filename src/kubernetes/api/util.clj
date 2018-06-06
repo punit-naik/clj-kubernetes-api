@@ -37,7 +37,8 @@
     (http/request
      (cond-> {:url (url ctx path params query)
               :method method
-              :as :text}
+              :as :text
+              :insecure? true}
        body (assoc :body (json/write-str body)
                    :content-type :json))
      #(go (let [resp (parse-response %)]
